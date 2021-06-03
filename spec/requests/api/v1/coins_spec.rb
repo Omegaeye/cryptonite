@@ -18,6 +18,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
       get '/api/v1/coins', headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(body[:data]).to be_a(Hash)
     end
   end
 end
