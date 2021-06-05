@@ -14,16 +14,9 @@ RSpec.describe "Api::V1::Coins", type: :request do
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data]).to be_an(Array)
+      expect(body[:data].first.class).to eq(Hash)
       expect(body[:data].first.keys).to eq(%i[id type attributes])
       expect(body[:data].first[:attributes].keys).to eq(%i[name symbol usd_price btc_price percent_change])
-    end
-
-    it "renders a successful response" do
-      get '/api/v1/coins', headers: valid_headers, as: :json
-      expect(response).to be_successful
-      body = JSON.parse(response.body, symbolize_names: true)
-      expect(body[:data].class).to eq(Array)
-      expect(body[:data].first.class).to eq(Hash)
     end
 
     it "renders only 20" do

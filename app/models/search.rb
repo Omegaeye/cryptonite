@@ -12,4 +12,6 @@ class Search < ApplicationRecord
 
     return coin
   end
+
+  
 end
