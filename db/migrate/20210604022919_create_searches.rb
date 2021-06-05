@@ -3,9 +3,9 @@ class CreateSearches < ActiveRecord::Migration[5.2]
     create_table :searches do |t|
       t.string :name
       t.string :symbol
-      t.decimal :usd_price
-      t.string :btc_price
-      t.integer :percent_change
+      t.float :usd_price
+      t.float :btc_price
+      t.float :percent_change
 
       t.timestamps
     end
