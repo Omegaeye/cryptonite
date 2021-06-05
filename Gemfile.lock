@@ -210,7 +210,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
-  bootsnap (>= 1.1.0)
+  bootsnap
   byebug
   capybara
   factory_bot_rails
