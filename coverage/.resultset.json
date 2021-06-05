@@ -97,6 +97,14 @@
       "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/controllers/application_controller.rb": {
         "lines": [
           1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -118,6 +126,10 @@
           6,
           6,
           6,
+          0,
+          null,
+          6,
+          null,
           null,
           null,
           1,
@@ -129,6 +141,6 @@
         ]
       }
     },
-    "timestamp": 1622852903
+    "timestamp": 1622855447
   }
 }
