@@ -58,11 +58,7 @@ RSpec.describe "Api::V1::Searches", type: :request do
         valid_params = {symbol: '', page: '', per_page: ''}
         post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
         expect(response).to be_successful
-        require 'pry'; binding.pry
-        body = JSON.parse(response.body, symbolize_names: true)
       end
-      
     end
-
   end
 end
