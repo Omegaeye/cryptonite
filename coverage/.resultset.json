@@ -1,0 +1,134 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/facades/coins_facade.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          294,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/models/coin.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          17,
+          17,
+          17,
+          17,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/models/search.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          7,
+          null,
+          7,
+          7,
+          7,
+          7,
+          7,
+          null,
+          7,
+          null,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/services/coins_service.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          null,
+          2,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/controllers/api/v1/coins_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          11,
+          11,
+          null,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/serializers/coin_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/kn/Projects/hotel_engine_projects/cryptonite/app/controllers/api/v1/searches_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          6,
+          6,
+          6,
+          6,
+          6,
+          null,
+          null,
+          1,
+          null,
+          1,
+          23,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1622852903
+  }
+}

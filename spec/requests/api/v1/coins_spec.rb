@@ -34,12 +34,13 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it "renders page 1" do
+      coins = Coin.all
       get "/api/v1/coins?page=1", headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(20)
-      expect(body[:data].first[:id]).to eq("10477")
-      expect(body[:data].last[:id]).to eq("10496")
+      expect(body[:data].first[:id]).to eq("#{coins.first.id}")
+      expect(body[:data].last[:id]).to eq("#{coins[19].id}")
     end
 
     it "renders page 2" do
@@ -65,8 +66,7 @@ RSpec.describe "Api::V1::Coins", type: :request do
       expect(body[:data].last[:id].to_i).to eq(coins[49].id)
     end
 
-    it 'return 15 Coins per page' do
-      coins = Coin.all
+    it 'return 1 Coin per page' do
       get '/api/v1/coins?per_page=1&page=2', headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
@@ -75,7 +75,7 @@ RSpec.describe "Api::V1::Coins", type: :request do
 
     it 'still returns all Coins if per_page is greater than all Coins' do
       coins = Coin.all
-      get '/api/v1/coins?per_page=300', headers: valid_headers, as: :json
+      get '/api/v1/coins?per_page=291', headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(291)
@@ -104,7 +104,6 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it 'calling a page that doesnt have any Coins wont break it' do
-      coins = Coin.all
       get '/api/v1/coins?page=20', headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
