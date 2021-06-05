@@ -10,7 +10,7 @@ RSpec.describe "Api::V1::Coins", type: :request do
   describe "GET /index" do
     
     it "should get coins information" do
-      get '/api/v1/coins', headers: valid_headers, as: :json
+      get api_v1_coins_path
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data]).to be_an(Array)
@@ -20,7 +20,7 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it "renders only 20" do
-      get '/api/v1/coins', headers: valid_headers, as: :json
+      get api_v1_coins_path
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(20)
@@ -28,7 +28,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
 
     it "renders page 1" do
       coins = Coin.all
-      get "/api/v1/coins?page=1", headers: valid_headers, as: :json
+      valid_params = {page: '1'}
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(20)
@@ -38,7 +39,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
 
     it "renders page 2" do
       coins = Coin.all
-      get "/api/v1/coins?page=2", headers: valid_headers, as: :json
+      valid_params = {page: '2'}
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(20)
@@ -50,8 +52,9 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it 'return 50 Coins per page' do
+      valid_params = {per_page: '50'}
       coins = Coin.all
-      get '/api/v1/coins?per_page=50', headers: valid_headers, as: :json
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(50)
@@ -60,7 +63,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it 'return 1 Coin per page' do
-      get '/api/v1/coins?per_page=1&page=2', headers: valid_headers, as: :json
+      valid_params = {page: '2', per_page: '1'}
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(1)
@@ -68,7 +72,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
 
     it 'still returns all Coins if per_page is greater than all Coins' do
       coins = Coin.all
-      get '/api/v1/coins?per_page=291', headers: valid_headers, as: :json
+      valid_params = {per_page: '291'}
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(291)
@@ -78,7 +83,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
 
     it 'returns the correct amount per page with given param' do
       coins = Coin.all
-      get '/api/v1/coins?per_page=15', headers: valid_headers, as: :json
+      valid_params = {per_page: '15'}
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(15)
@@ -88,7 +94,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
 
     it 'last page doesnt break if there arent 20 Coins to display' do
       coins = Coin.all
-      get '/api/v1/coins?page=15&per_page=20', headers: valid_headers, as: :json
+      valid_params = {page: '15', per_page: '20'}
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(11)
@@ -97,7 +104,8 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it 'calling a page that doesnt have any Coins wont break it' do
-      get '/api/v1/coins?page=20', headers: valid_headers, as: :json
+      valid_params = {page: '20'}
+      get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(0)
