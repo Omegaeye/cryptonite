@@ -55,11 +55,12 @@ RSpec.describe "Api::V1::Searches", type: :request do
         expect(body[:data].size).to eq(1)
       end
 
-    describe "sad path" do
-      it "should break" do
-        valid_params = {symbol: '', page: '', per_page: ''}
+    describe "Edge Case and Sad Path" do
+      it "should response with status 400 and No match for that query " do
+        valid_params = {symbol: '?'}
         post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
-        expect(response).to be_successful
+        body = JSON.parse(response.body, symbolize_names: true)
+        expect(body[:error]).to eq("No match for that query")
       end
     end
   end
