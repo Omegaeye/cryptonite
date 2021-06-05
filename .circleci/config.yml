@@ -26,5 +26,4 @@ jobs:
       - checkout
       - run: bundle install --path vendor/bundle
       - run: bundle exec rake db:setup
-      - run: rails db:seed RAILS_ENV=test
       - run: bundle exec rspec
