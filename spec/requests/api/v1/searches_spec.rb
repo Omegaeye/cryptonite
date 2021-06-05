@@ -31,13 +31,13 @@ RSpec.describe "Api::V1::Searches", type: :request do
         expect(response).to be_successful
       end
       
-      it "should return data with multiple params" do
-        valid_params = {name: 'itc', usd_price: 5, percent_change: 2}
-        post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
-        expect(response).to be_successful
-        body = JSON.parse(response.body, symbolize_names: true)
-        expect(body[:data].size).to eq(1)
-      end
+      # it "should return data with multiple params" do
+      #   valid_params = {name: 'itc', usd_price: 5, percent_change: 2}
+      #   post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
+      #   expect(response).to be_successful
+      #   body = JSON.parse(response.body, symbolize_names: true)
+      #   expect(body[:data].size).to eq(1)
+      # end
 
        it "should return data with partial and with with page 1 per_page 1" do
         valid_params = {symbol: 'btc', page: 1, per_page: 1}
