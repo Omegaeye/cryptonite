@@ -31,13 +31,13 @@ RSpec.describe "Api::V1::Searches", type: :request do
         expect(response).to be_successful
       end
       
-      # it "should return data with multiple params" do
-      #   valid_params = {name: 'itc', usd_price: 5, percent_change: 2}
-      #   post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
-      #   expect(response).to be_successful
-      #   body = JSON.parse(response.body, symbolize_names: true)
-      #   expect(body[:data].size).to eq(1)
-      # end
+      it "should return data with multiple params" do
+        valid_params = {name: 'itc', usd_price: 5, percent_change: 2}
+        post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
+        expect(response).to be_successful
+        body = JSON.parse(response.body, symbolize_names: true)
+        expect(body[:data].size).to eq(1)
+      end
 
        it "should return data with partial and with with page 1 per_page 1" do
         valid_params = {symbol: 'btc', page: 1, per_page: 1}
@@ -61,6 +61,48 @@ RSpec.describe "Api::V1::Searches", type: :request do
         post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
         body = JSON.parse(response.body, symbolize_names: true)
         expect(body[:error]).to eq("No match for that query")
+      end
+    end
+
+     describe "testing sort by params" do
+      it "sort by usd_price " do
+        valid_params = {name: 'itc', sort: 'usd_price'}
+        post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
+        expect(response).to be_successful
+        body = JSON.parse(response.body, symbolize_names: true)
+        expect(body[:data].first[:attributes][:usd_price]).to be > body[:data].second[:attributes][:usd_price]
+        expect(body[:data].second[:attributes][:usd_price]).to be > body[:data].last[:attributes][:usd_price]
+      end
+
+      it "sort by percent_change " do
+        valid_params = {name: 'itc', sort: 'percent_change'}
+        post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
+        expect(response).to be_successful
+        body = JSON.parse(response.body, symbolize_names: true)
+        expect(body[:data].first[:attributes][:percent_change]).to be > body[:data].second[:attributes][:percent_change]
+        expect(body[:data].fourth[:attributes][:percent_change]).to be > body[:data].last[:attributes][:percent_change]
+      end
+
+       it "sort by symbol to asc " do
+        coins = Coin.all.order(symbol: :asc)
+        coins = coins.where('name ILIKE ?', "%itc%")
+        valid_params = {name: 'itc', sort: 'symbol'}
+        post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
+        expect(response).to be_successful
+        body = JSON.parse(response.body, symbolize_names: true)
+        expect(body[:data].first[:attributes][:name]).to eq(coins.first.name)
+      end
+    end
+
+    describe 'sad pathing sorting' do
+        it "default to sort by name if invalid param " do
+        coins = Coin.all.order(name: :asc)
+        coins = coins.where('name ILIKE ?', "%itc%")
+        valid_params = {name: 'itc', sort: 'help me'}
+        post '/api/v1/searches', params: valid_params, headers: valid_headers, as: :json
+        expect(response).to be_successful
+        body = JSON.parse(response.body, symbolize_names: true)
+        expect(body[:data].first[:attributes][:name]).to eq(coins.first.name)
       end
     end
   end

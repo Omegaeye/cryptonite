@@ -8,5 +8,16 @@ class Coin < ApplicationRecord
     self.offset(offset).limit(per_page)
   end
 
-  
+  def self.sorting_params(params)
+    valid_float_params = %w[usd_price btc_price percent_change]
+    valid_string_params = %w[name symbol]
+
+    if valid_float_params.include?(params.downcase)
+      order(params + ' DESC')
+    elsif valid_string_params.include?(params.downcase)
+      order(params + ' ASC')
+    else
+      order(name: :asc)
+    end
+  end
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :coins, only: %i[index]
-      resources :searches, only: %i[show new create]
+      resources :searches, only: %i[create]
     end
   end
 end
