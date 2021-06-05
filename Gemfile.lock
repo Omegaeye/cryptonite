@@ -114,7 +114,7 @@ GEM
     msgpack (1.4.2)
     multipart-post (2.1.1)
     nio4r (2.5.7)
-    nokogiri (1.11.6-x86_64-darwin)
+    nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
     pg (1.2.3)
     pry (0.14.1)
@@ -233,3 +233,4 @@ DEPENDENCIES
 
 RUBY VERSION
    ruby 2.5.3p105
+
