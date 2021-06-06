@@ -40,6 +40,16 @@ Go to [Endpoints](#endpoints) and use `/coins` and `/searches` endpoints to reci
 
 #### Search Sad Path
 
+![Search sad path](https://user-images.githubusercontent.com/46826902/120930155-64550c00-c6a9-11eb-96c8-f2a0fb2b4944.png)
+
+#### Search pagination
+
+![Search pagination](https://user-images.githubusercontent.com/46826902/120932798-8011df80-c6b4-11eb-9e18-334655c55fbd.png)
+
+#### Search pagination sad path and edge case
+
+![Search sad path and edge case](https://user-images.githubusercontent.com/46826902/120932963-31b11080-c6b5-11eb-9b51-c5065edebec3.png)
+
 ## Endpoints
 
 ### Post https://crypton-ite.herokuapp.com/api/v1/searches
