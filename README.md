@@ -31,6 +31,12 @@ Go to [Endpoints](#endpoints) and use `/coins` and `/searches` endpoints to reci
 
 - `bundle exec rspec` to run the test suite
 
+### Sample of Tests Across the App
+
+#### Search Happy Path
+
+#### Search Sad Path
+
 ## Endpoints
 
 ### Post https://crypton-ite.herokuapp.com/api/v1/searches
@@ -41,13 +47,7 @@ Returns of all crypto coins in list of 20
 
 ## Built With
 
-  - Rails API
-  - BCrypt
-  - FastJsonApi
-  - RSpec
-  - Capybara
-  - VCR
-  - SimpleCov
+<p align="left"> <a href="https://circleci.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/circleci/circleci-icon.svg" alt="circleci" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://rubyonrails.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rails/rails-original-wordmark.svg" alt="rails" width="40" height="40"/> </a> <a href="https://www.ruby-lang.org/en/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-original.svg" alt="ruby" width="40" height="40"/> </a> </p>
 
 ## Versioning
 
