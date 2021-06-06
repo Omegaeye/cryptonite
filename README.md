@@ -35,6 +35,9 @@ Go to [Endpoints](#endpoints) and use `/coins` and `/searches` endpoints to reci
 
 #### Search Happy Path
 
+[Search happy path](https://user-images.githubusercontent.com/46826902/120930053-e1cc4c80-c6a8-11eb-8979-7baade5b3e86.png)
+
+
 #### Search Sad Path
 
 ## Endpoints
