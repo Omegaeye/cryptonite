@@ -44,7 +44,7 @@ Go to [Endpoints](#endpoints) and use `/coins` and `/searches` endpoints to reci
 
 #### Search pagination
 
-![Search pagination](https://user-images.githubusercontent.com/46826902/120932798-8011df80-c6b4-11eb-9e18-334655c55fbd.png)
+![Search pagination](https://user-images.githubusercontent.com/46826902/120933019-80f74100-c6b5-11eb-9591-f179f347f1e3.png)
 
 #### Search pagination sad path and edge case
 
