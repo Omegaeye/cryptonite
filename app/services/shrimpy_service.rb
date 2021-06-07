@@ -1,4 +1,4 @@
-class CoinsService
+class ShrimpyService
 
   def self.get_data
     response = conn.get('/v1/exchanges/kucoin/ticker')

@@ -6,5 +6,4 @@ rescue_from ActiveRecord::RecordNotFound, with: :no_record_found
       error: 'No match for that query'
      })
   end
-  
 end
