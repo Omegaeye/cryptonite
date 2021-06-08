@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-06-07T21:32:40-06:00">2021-06-07T21:32:40-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-06-08T14:17:51-06:00">2021-06-08T14:17:51-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -815,7 +815,7 @@
 
             
 
-            <code class="ruby">        @search = Search.create(search_params)</code>
+            <code class="ruby">        Search.create(search_params)</code>
           </li>
         </div>
       
@@ -826,7 +826,7 @@
 
             
 
-            <code class="ruby">        @search_result = Coin.search_coins(search_params)</code>
+            <code class="ruby">        search_result = Coin.search_coins(search_params)</code>
           </li>
         </div>
       
@@ -837,7 +837,7 @@
 
             
 
-            <code class="ruby">        return no_record_found if @search_result.empty?</code>
+            <code class="ruby">        return no_record_found if search_result.empty?</code>
           </li>
         </div>
       
@@ -848,7 +848,7 @@
 
             
 
-            <code class="ruby">        @paginated_search_result = @search_result.pagination_helper(params[:page], params[:per_page])</code>
+            <code class="ruby">        paginated_search_result = search_result.pagination_helper(params[:page], params[:per_page])</code>
           </li>
         </div>
       
@@ -859,7 +859,7 @@
 
             
 
-            <code class="ruby">        @paginated_search_result = @paginated_search_result.sorting_params(params[:sort])  if params[:sort]</code>
+            <code class="ruby">        paginated_search_result = paginated_search_result.sorting_params(params[:sort])  if params[:sort]</code>
           </li>
         </div>
       
@@ -870,7 +870,7 @@
 
             
 
-            <code class="ruby">        render json: CoinSerializer.new(@paginated_search_result)</code>
+            <code class="ruby">        render json: CoinSerializer.new(paginated_search_result)</code>
           </li>
         </div>
       

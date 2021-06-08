@@ -1,12 +1,12 @@
 class Api::V1::Coins::SearchesController < ApplicationController
 
     def create
-        @search = Search.create(search_params)
-        @search_result = Coin.search_coins(search_params)
-        return no_record_found if @search_result.empty?
-        @paginated_search_result = @search_result.pagination_helper(params[:page], params[:per_page])
-        @paginated_search_result = @paginated_search_result.sorting_params(params[:sort])  if params[:sort]
-        render json: CoinSerializer.new(@paginated_search_result)
+        Search.create(search_params)
+        search_result = Coin.search_coins(search_params)
+        return no_record_found if search_result.empty?
+        paginated_search_result = search_result.pagination_helper(params[:page], params[:per_page])
+        paginated_search_result = paginated_search_result.sorting_params(params[:sort])  if params[:sort]
+        render json: CoinSerializer.new(paginated_search_result)
     end 
 
     private

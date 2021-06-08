@@ -11,10 +11,14 @@ RSpec.describe "Api::V1::Coins::Searches", type: :request do
   describe "happy path" do
     
     it "should return data with valid searches" do
+      search_size = Search.all.size
       valid_params = {name: 'bitcoin'}
       post api_v1_coins_searches_path, params: valid_params, headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(search_size).to be < Search.all.size
+
       expect(body).to be_a(Hash)
       expect(body[:data]).to be_a(Array)
       expect(body[:data].first.keys).to eq(%i[id type attributes])
