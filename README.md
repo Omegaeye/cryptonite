@@ -1,6 +1,7 @@
 # Cryptonite
 
-  A Ruby/Rails public Crypto Currency API in which users can search and filter through results. This app is hosted using Heroku and database is scheduled to update every 10 minutes with the latest data from shrimpy API. Highlights of the application include endpoints that return paginated results and 100% test coverage.
+  This API was created for users to search and filter Cryto Currency data provided by Shrimpy API. The data is programmed to update every 10 minutes, ensuring the users have the latest crypto currency information available. A couple of highlights for this application are the endpoints and test suite. The endpoints return paginated results and the included test suite has 100% coverage.
+This application was created with Ruby on Rails and is currently hosted on Heroku.
   
 ## Authors
     
@@ -17,6 +18,7 @@
   - [Built With](#built-with)
   - [Versioning](#versioning)
   - [Reflection](#reflection)
+  - [Acknowledgement](#acknowledgement)
 
 ## Getting Started
 
@@ -38,6 +40,8 @@ Go to [Endpoints](#endpoints) and use `/coins` and `coins/searches` endpoints to
 - `bundle exec rspec` to run the test suite
 
 ### Sample of Tests Across the App
+  
+  - Testing includes coverage of all endpoint with happy and sad path and edge case.
 
 #### Search Happy Path
 
@@ -75,4 +79,18 @@ This is version 1 of Cryptonite, for any updated versions please check back here
     
 ## Reflection 
 
-  - This project has given me great insights on how an advance search engine works. 
+  - Following the process of TDD allowed me to thoroughly organized my thoughts and planned out the algorithm of this project.
+    - writing the test first helped me understand errors and let it guide me to to write my code. 
+  - In previous projects, I was more focused on the functionality, structure, and implementation of codes. This project allowed me to dive deep into an area that I've always been curious about, advance search and filtering. 
+  - Creating and saving the search request into the database as a model allow future implementation of caching to further optimize the performance of the app. 
+  - currently, the request params are being pushed to the model which compile data from the database then response back to the controller.
+    - I do understand that having the model compile data from the database on every request will have a slower response.
+  - In order to increase user experience I made sure that the app is protected against Shrimpy API failing by consuming the API and create a coin model that has attributes with the data as values.
+    - The database is being updated by destroying all the coin data and reseeded with the help of Heroku Scheduler, set to every 10 minutes, which is designed with the limitation of Heroku storage in mind.
+    - for future iteration, I would implement that the data is being sort through and if there's a change in the value, then create another instance of coin. That way, I have the ability to store previous values for further algorithm research.
+  - One way that I optimize for speed is to implement pagination. It default to return only 20 records per request unless params is given. The limitation on the return of records help split the data into smaller chunks so the app doesn't have to process such a large amount of data.
+  - to reduce the negative user experience, sad path and edge case was included and tested thoroughly. Test coverage in 100%.
+
+## Acknowledgement
+
+  - This app data is being provided by [Shrimpy.io](https://dev-api.shrimpy.io), crypto trading and market data API.
