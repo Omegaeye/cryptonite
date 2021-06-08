@@ -82,7 +82,10 @@ This is version 1 of Cryptonite, for any updated versions please check back here
 ## Reflection 
 
   - Following the process of TDD allowed me to thoroughly organized my thoughts and planned out the algorithm of this project.
-    - writing the test first helped me understand errors and let it guide me to to write my code. 
+    - writing the tests and using the errors to guide me on what code to write has increase my understanding in different aspects of the app that I would never have thought of. 
+      - reading and understanding errors
+      - flow of data
+      - better security   
   - In previous projects, I was more focused on the functionality, structure, and implementation of codes. This project allowed me to dive deep into an area that I've always been curious about, advance search and filtering. 
   - Creating and saving the search request into the database as a model allow future implementation of caching to further optimize the performance of the app. 
   - currently, the request params are being pushed to the model which compile data from the database then response back to the controller.
