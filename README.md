@@ -1,7 +1,13 @@
 # Cryptonite
 
-  A Ruby/Rails public Crypto Currency API in which users can search and filter through results.
-
+  A Ruby/Rails public Crypto Currency API in which users can search and filter through results. This app is hosted using Heroku and database is scheduled to update every 10 minutes with the latest data from shrimpy API. Highlights of the application include endpoints that return paginated results and 100% test coverage.
+  
+## Authors
+    
+  - **Khoa Nguyen** - 
+    - [GitHub](https://github.com/omegaeye)
+    - [Link'd In](https://www.linkedin.com/in/khoa-n323)
+Cancel changes
 ## Summary
 
   - [Getting Started](#getting-started)
@@ -9,14 +15,13 @@
   - [Endpoints](#endpoints)
   - [Built With](#built-with)
   - [Versioning](#versioning)
-  - [Authors](#authors)
-  - [Acknowledgments](#acknowledgments)
+  - [Reflection](#reflection)
 
 ## Getting Started
 
 ### For Using Endpoints
 
-Go to [Endpoints](#endpoints) and use `/coins` and `/searches` endpoints to recieve crypto currency information.
+Go to [Endpoints](#endpoints) and use `/coins` and `coins/searches` endpoints to recieve crypto currency information.
 
 ### Gemfile
 ![fj-gemfile](https://user-images.githubusercontent.com/46826902/120928594-7b443000-c6a2-11eb-9007-3a0f11408cb5.png)
@@ -52,7 +57,7 @@ Go to [Endpoints](#endpoints) and use `/coins` and `/searches` endpoints to reci
 
 ## Endpoints
 
-### Post https://crypton-ite.herokuapp.com/api/v1/searches
+### Post https://crypton-ite.herokuapp.com/api/v1/coins/searches
 Search through the database with valid params
 
 ### Get https://crypton-ite.herokuapp.com/api/v1/coins
@@ -66,9 +71,7 @@ Returns of all crypto coins in list of 20
 
 This is version 1 of Cryptonite, for any updated versions please check back here. New versions will be linked below:
 
-## Authors
     
-  - **Khoa Nguyen** - 
-    [GitHub](https://github.com/omegaeye)
+## Reflection 
 
-## Acknowledgments
+  - This project has given me great insights on how an advance search engine works. 
