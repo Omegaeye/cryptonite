@@ -76,9 +76,34 @@ Search through the database with valid params:
   - max_percent_change
   - page
   - per_page
+ 
+ Postman happy request to Heroku
+  
+ ![Postman request](https://user-images.githubusercontent.com/46826902/121249151-7e394f00-c861-11eb-933b-c4a18cee4521.png)
+  
+ Postman happy response
+ 
+ ![Postman response](https://user-images.githubusercontent.com/46826902/121249327-b2ad0b00-c861-11eb-96cd-9cfa79eef8b5.png)
+
+ Postman sad request
+ 
+ ![Postman sad request](https://user-images.githubusercontent.com/46826902/121249677-15060b80-c862-11eb-987d-8bff3494e89a.png)
+ 
+ Postman sad response
+ 
+ ![Postman sad response](https://user-images.githubusercontent.com/46826902/121249731-23ecbe00-c862-11eb-91ee-b4961c7691a7.png)
+
 
 ### Get https://crypton-ite.herokuapp.com/api/v1/coins
 Returns of all crypto coins in list of 20
+
+Postman happy request to Heroku
+
+![coins happy path](https://user-images.githubusercontent.com/46826902/121249961-6adab380-c862-11eb-97d4-d2d4983d461e.png)
+
+Postman happy response
+
+![happy response](https://user-images.githubusercontent.com/46826902/121250083-8ba30900-c862-11eb-94ec-d253a19f1bfb.png)
 
 ## Built With
 
@@ -94,15 +119,15 @@ This is version 1 of Cryptonite, for any updated versions please check back here
   - Following the process of TDD allowed me to thoroughly organized my thoughts and planned out the algorithm of this project.
     - To reduce the negative user experience, sad path and edge case was included and tested thoroughly. Test coverage is 100%.
     - Writing the tests and using the errors to guided me on what code to write has increased my understanding in different aspects of the app that I would never have thought of. 
-      - reading and understanding errors
-      - flow of data
-      - better security   
+      - Reading and understanding errors
+      - Flow of data
+      - Better security   
   - Future implementation of caching is possible with the current setup of my application because search requests are saved into the database. Caching will optimize the performance of the application. 
-  - currently, the request params are being pushed to the model which compile data from the database then response back to the controller.
+  - Currently, the request params are being pushed to the model which compile data from the database then response back to the controller.
     - I do understand that having the model compiled data from the database on every request will have a slower responsed.
   - In order to increased user experience, I made sure that the app is protected against Shrimpy API failing by consuming the API and create a coin model that has attributes with the data as values.
     - The database is being updated by the overwriting of data on all the coins with the help of Heroku Scheduler, set to every 10 minutes, which is designed with the limitation of Heroku storage in mind.
-    - for future iteration, I would implement that the data is being sort through and if there's a change in the value, then create another instance of coin. That way, I have the ability to store previous values for further algorithm research.
+    - For future iteration, I would implement that the data is being sort through and if there's a change in the value, then create another instance of coin. That way, I have the ability to store previous values for further algorithm research.
   - With the thought of performance optimization in mind, I implemented pagination. The endpoints return 20 records per request unless params are given. The limitation on the return of records helped divide the data into smaller chunks for faster processing.
 
 ## Acknowledgement
