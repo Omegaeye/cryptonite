@@ -34,6 +34,8 @@ Go to [Endpoints](#endpoints) and use `/coins` and `coins/searches` endpoints to
 - Fork and clone this repo
 - Run `bundle install`
 - Run `rails db:{create,migrate,seed}`
+- To seed test database
+  - Run `rails db:seed RAILS_ENV=test`
 
 ## Running the tests
 
