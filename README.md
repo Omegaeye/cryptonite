@@ -65,7 +65,17 @@ Go to [Endpoints](#endpoints) and use `/coins` and `coins/searches` endpoints to
 ## Endpoints
 
 ### Post https://crypton-ite.herokuapp.com/api/v1/coins/searches
-Search through the database with valid params
+Search through the database with valid params: 
+  - name, 
+  - symbol, 
+  - min_usd_price 
+  - max_usd_price 
+  - min_btc_price 
+  - max_btc_price 
+  - min_percent_change 
+  - max_percent_change
+  - page
+  - per_page
 
 ### Get https://crypton-ite.herokuapp.com/api/v1/coins
 Returns of all crypto coins in list of 20
@@ -80,21 +90,20 @@ This is version 1 of Cryptonite, for any updated versions please check back here
 
     
 ## Reflection 
-
+  - This project allowed me to dive deep into an area that I've always been curious about, advanced search and filtering. 
   - Following the process of TDD allowed me to thoroughly organized my thoughts and planned out the algorithm of this project.
-    - writing the tests and using the errors to guided me on what code to write has increased my understanding in different aspects of the app that I would never have thought of. 
+    - To reduce the negative user experience, sad path and edge case was included and tested thoroughly. Test coverage is 100%.
+    - Writing the tests and using the errors to guided me on what code to write has increased my understanding in different aspects of the app that I would never have thought of. 
       - reading and understanding errors
       - flow of data
       - better security   
-  - In previous projects, I was more focused on the functionality, structure, and implementation of codes. This project allowed me to dive deep into an area that I've always been curious about, advanced search and filtering. 
-  - Creating and saving the search request into the database as a model allow future implementation of caching to further optimize the performance of the app. 
+  - Future implementation of caching is possible with the current setup of my application because search requests are saved into the database. Caching will optimize the performance of the application. 
   - currently, the request params are being pushed to the model which compile data from the database then response back to the controller.
     - I do understand that having the model compiled data from the database on every request will have a slower responsed.
-  - In order to increased user experience I made sure that the app is protected against Shrimpy API failing by consuming the API and create a coin model that has attributes with the data as values.
+  - In order to increased user experience, I made sure that the app is protected against Shrimpy API failing by consuming the API and create a coin model that has attributes with the data as values.
     - The database is being updated by the overwriting of data on all the coins with the help of Heroku Scheduler, set to every 10 minutes, which is designed with the limitation of Heroku storage in mind.
     - for future iteration, I would implement that the data is being sort through and if there's a change in the value, then create another instance of coin. That way, I have the ability to store previous values for further algorithm research.
   - With the thought of performance optimization in mind, I implemented pagination. The endpoints return 20 records per request unless params are given. The limitation on the return of records helped divide the data into smaller chunks for faster processing.
-  - to reduce the negative user experience, sad path and edge case was included and tested thoroughly. Test coverage is 100%.
 
 ## Acknowledgement
 
