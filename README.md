@@ -5,8 +5,10 @@
 ## Authors
     
   - **Khoa Nguyen** 
+  
     - [GitHub](https://github.com/omegaeye)
     - [Link'd In](https://www.linkedin.com/in/khoa-n323)
+    
 ## Summary
 
   - [Getting Started](#getting-started)
