@@ -4,10 +4,9 @@
   
 ## Authors
     
-  - **Khoa Nguyen** - 
+  - **Khoa Nguyen** 
     - [GitHub](https://github.com/omegaeye)
     - [Link'd In](https://www.linkedin.com/in/khoa-n323)
-Cancel changes
 ## Summary
 
   - [Getting Started](#getting-started)
