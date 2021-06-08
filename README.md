@@ -1,7 +1,7 @@
 # Cryptonite
 
-  This API was created for users to search and filter Cryto Currency data provided by Shrimpy API. The data is programmed to update every 10 minutes, ensuring the users have the latest crypto currency information available. A couple of highlights for this application are the endpoints and test suite. The endpoints return paginated results and the included test suite has 100% coverage.
-This application was created with Ruby on Rails and is currently hosted on Heroku.
+  This API was created for users to search and filter Cryto Currency data provided by Shrimpy API. The data is programmed to update every 10 minutes, ensuring the users have the latest crypto currency information available. A few highlights for this application are the Circle CI, endpoints and test suite. The endpoints return paginated results and the included test suite has 100% coverage. 
+This application was created with Ruby on Rails and is currently being auto deploy to Heroku after successfully pass Circle CI check.
   
 ## Authors
     
