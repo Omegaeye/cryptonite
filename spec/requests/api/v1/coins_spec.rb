@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Coins", type: :request do
+  before(:each) do
+    @coins = Coin.all
+  end
 
   let(:valid_headers) do
     { 'CONTENT_TYPE' => 'application/json; charset=utf-8' }
@@ -27,39 +30,36 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it "renders page 1" do
-      coins = Coin.all
       valid_params = {page: '1'}
       get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(20)
-      expect(body[:data].first[:id]).to eq("#{coins.first.id}")
-      expect(body[:data].last[:id]).to eq("#{coins[19].id}")
+      expect(body[:data].first[:id].to_i).to eq(@coins.first.id)
+      expect(body[:data].last[:id].to_i).to eq(@coins[19].id)
     end
 
     it "renders page 2" do
-      coins = Coin.all
       valid_params = {page: '2'}
       get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(20)
       expect(body[:data]).to_not be_empty
-      expect(body[:data].first[:id].to_i).to_not eq(coins.first.id)
-      expect(body[:data].first[:id].to_i).to eq(coins[20].id)
-      expect(body[:data].last[:id].to_i).to eq(coins[39].id)
+      expect(body[:data].first[:id].to_i).to_not eq(@coins.first.id)
+      expect(body[:data].first[:id].to_i).to eq(@coins[20].id)
+      expect(body[:data].last[:id].to_i).to eq(@coins[39].id)
       expect(body[:data].size).to eq(20)
     end
 
     it 'return 50 Coins per page' do
       valid_params = {per_page: '50'}
-      coins = Coin.all
       get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(50)
-      expect(body[:data].first[:id].to_i).to eq(coins.first.id)
-      expect(body[:data].last[:id].to_i).to eq(coins[49].id)
+      expect(body[:data].first[:id].to_i).to eq(@coins.first.id)
+      expect(body[:data].last[:id].to_i).to eq(@coins[49].id)
     end
 
     it 'return 1 Coin per page' do
@@ -71,36 +71,32 @@ RSpec.describe "Api::V1::Coins", type: :request do
     end
 
     it 'still returns all Coins if per_page is greater than all Coins' do
-      coins = Coin.all
-      valid_params = {per_page: '291'}
+      valid_params = {per_page: '500'}
       get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
-      expect(body[:data].size).to eq(291)
-      expect(body[:data].first[:id].to_i).to eq(coins.first.id)
-      expect(body[:data].last[:id].to_i).to eq(coins.last.id)
+      expect(body[:data].size).to eq(@coins.size)
+      expect(body[:data].first[:id].to_i).to eq(@coins.first.id)
+      expect(body[:data].last[:id].to_i).to eq(@coins.last.id)
     end
 
     it 'returns the correct amount per page with given param' do
-      coins = Coin.all
       valid_params = {per_page: '15'}
       get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(15)
-      expect(body[:data].first[:id].to_i).to eq(coins[0].id)
-      expect(body[:data].last[:id].to_i).to eq(coins[14].id)
+      expect(body[:data].first[:id].to_i).to eq(@coins[0].id)
+      expect(body[:data].last[:id].to_i).to eq(@coins[14].id)
     end
 
     it 'last page doesnt break if there arent 20 Coins to display' do
-      coins = Coin.all
       valid_params = {page: '15', per_page: '20'}
       get api_v1_coins_path, params: valid_params
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
-      expect(body[:data].size).to eq(11)
-      expect(body[:data].first[:id].to_i).to eq(coins[280].id)
-      expect(body[:data].last[:id].to_i).to eq(coins[290].id)
+      expect(body[:data].first[:id].to_i).to eq(@coins[280].id)
+      expect(body[:data].last[:id].to_i).to eq(@coins.last.id)
     end
 
     it 'calling a page that doesnt have any Coins wont break it' do

@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Coins::Searches", type: :request do
-
+  before(:each) do
+    @coins = Coin.all
+  end
    let(:valid_headers) do
     { 'CONTENT_TYPE' => 'application/json; charset=utf-8' }
   end
@@ -101,35 +103,31 @@ RSpec.describe "Api::V1::Coins::Searches", type: :request do
     end
   
     it "should return data corresponding to page 2 and per_page 30" do
-      coins = Coin.all
       valid_params = {page: 2, per_page: 30}
       post api_v1_coins_searches_path, params: valid_params, headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:data].size).to eq(30)
-      expect(body[:data].first[:id].to_i).to eq(coins.first(31).last.id)
+      expect(body[:data].first[:id].to_i).to eq(@coins.first(31).last.id)
     end
   
     it 'still returns all Coins if per_page is greater than all Coins' do
-      coins = Coin.all
-      valid_params = {per_page: '291'}
+      valid_params = {per_page: '300'}
       post api_v1_coins_searches_path, params: valid_params, headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
-      expect(body[:data].size).to eq(291)
-      expect(body[:data].first[:id].to_i).to eq(coins.first.id)
-      expect(body[:data].last[:id].to_i).to eq(coins.last.id)
+      expect(body[:data].size).to eq(@coins.all.size)
+      expect(body[:data].first[:id].to_i).to eq(@coins.first.id)
+      expect(body[:data].last[:id].to_i).to eq(@coins.last.id)
     end
   
     it 'last page doesnt break if there arent 20 Coins to display' do
-      coins = Coin.all
       valid_params = {page: '15', per_page: '20'}
       post api_v1_coins_searches_path, params: valid_params, headers: valid_headers, as: :json
       expect(response).to be_successful
       body = JSON.parse(response.body, symbolize_names: true)
-      expect(body[:data].size).to eq(11)
-      expect(body[:data].first[:id].to_i).to eq(coins[280].id)
-      expect(body[:data].last[:id].to_i).to eq(coins[290].id)
+      expect(body[:data].first[:id].to_i).to eq(@coins[280].id)
+      expect(body[:data].last[:id].to_i).to eq(@coins.last.id)
     end
   end
 
@@ -172,8 +170,7 @@ RSpec.describe "Api::V1::Coins::Searches", type: :request do
     end
 
     it "sort by symbol to asc " do
-      coins = Coin.all.order(symbol: :asc)
-      coins = coins.where('name ILIKE ?', "%itc%")
+      coins = @coins.where('name ILIKE ?', "%itc%").order(symbol: :asc)
       valid_params = {name: 'itc', sort: 'symbol'}
       post api_v1_coins_searches_path, params: valid_params, headers: valid_headers, as: :json
       expect(response).to be_successful
@@ -184,8 +181,7 @@ RSpec.describe "Api::V1::Coins::Searches", type: :request do
 
   describe 'sad pathing sorting' do
     it "default to sort by name if invalid param " do
-      coins = Coin.all.order(name: :asc)
-      coins = coins.where('name ILIKE ?', "%itc%")
+      coins = @coins.where('name ILIKE ?', "%itc%")
       valid_params = {name: 'itc', sort: 'help me'}
       post api_v1_coins_searches_path, params: valid_params, headers: valid_headers, as: :json
       expect(response).to be_successful

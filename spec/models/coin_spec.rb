@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Coin, type: :model do
+  before(:each) do
+    @coins = Coin.all
+  end
   describe "validations" do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:symbol) }
@@ -80,7 +83,7 @@ RSpec.describe Coin, type: :model do
   
          it "should default to all if name is empty" do
           search = Coin.search_coins({name: ''})
-          expect(search.size).to eq(291)
+          expect(search.size).to eq(@coins.size)
         end
   
         it "should return empty array if giving integer or other data types" do
@@ -102,7 +105,7 @@ RSpec.describe Coin, type: :model do
   
          it "should default to all if symbol is empty" do
           search = Coin.search_coins({symbol: ''})
-          expect(search.size).to eq(291)
+          expect(search.size).to eq(@coins.size)
         end
   
         it "should return empty array if giving integer or other data types" do
@@ -144,9 +147,9 @@ RSpec.describe Coin, type: :model do
           search = Coin.search_coins({min_btc_price: '', max_btc_price: ''})
           search2 = Coin.search_coins({min_btc_price: '?', max_btc_price: '🙁'})
           search3 = Coin.search_coins({min_btc_price: 'fdsafda', max_btc_price: 'fesaf'})
-          expect(search.size).to eq(291)
-          expect(search2.size).to eq(291)
-          expect(search3.size).to eq(291)
+          expect(search.size).to eq(@coins.size)
+          expect(search2.size).to eq(@coins.size)
+          expect(search3.size).to eq(@coins.size)
         end
       end
 
@@ -179,9 +182,9 @@ RSpec.describe Coin, type: :model do
           search = Coin.search_coins({min_usd_price: '', max_usd_price: ''})
           search2 = Coin.search_coins({min_usd_price: '?', max_usd_price: '🙁'})
           search3 = Coin.search_coins({min_usd_price: 'fdsafda', max_usd_price: 'fesaf'})
-          expect(search.size).to eq(291)
-          expect(search2.size).to eq(291)
-          expect(search3.size).to eq(291)
+          expect(search.size).to eq(@coins.size)
+          expect(search2.size).to eq(@coins.size)
+          expect(search3.size).to eq(@coins.size)
         end
       end
 
@@ -214,9 +217,9 @@ RSpec.describe Coin, type: :model do
           search = Coin.search_coins({min_percent_change: '', max_percent_change: ''})
           search2 = Coin.search_coins({min_percent_change: '?', max_percent_change: '🙁'})
           search3 = Coin.search_coins({min_percent_change: 'fdsafda', max_percent_change: 'fesaf'})
-          expect(search.size).to eq(291)
-          expect(search2.size).to eq(291)
-          expect(search3.size).to eq(291)
+          expect(search.size).to eq(@coins.size)
+          expect(search2.size).to eq(@coins.size)
+          expect(search3.size).to eq(@coins.size)
         end
       end
     end
